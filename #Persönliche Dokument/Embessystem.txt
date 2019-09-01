@@ -1,0 +1,89 @@
+include "pch.h"
+#include <iostream>
+
+
+ struct EmbeddedSystem {
+	// represents the size of memory in bytes
+	int memory;
+	struct EmbeddedSystem *next;
+	void print() {
+		std::cout << memory << "\n";
+	}
+};
+
+
+class HtwList :EmbeddedSystem{
+
+public:
+	HtwList*head;
+	HtwList(int size) : size(size) {
+	}
+	HtwList(){
+		head = NULL;
+		tail = NULL;
+	}
+	void add(int elem) {
+		// add here your code
+		EmbeddedSystem *temp = new EmbeddedSystem;
+		temp->memory = elem;
+		temp->next = NULL;
+		if (head == NULL)
+		{
+			Head = temp;
+			tail = temp;
+		}
+		else {
+			tail->next = temp;
+			tail = tail->next;
+		}
+
+	}
+
+	// print initial size of this list
+	void printSize() {
+		std::cout << size << "\n";
+	}
+	void printelem() {
+		EmbeddedSystem*Head = this->Head;
+		int i = 1;
+		while ( Head){
+		std::cout << i << ":" << Head->memory << std:: endl;
+			Head = Head->next;
+			i++;
+		}
+	}
+
+private:
+
+	// represents the initial size of this list
+	int size;
+	EmbeddedSystem *Head, *tail;
+};
+
+// this is a macro
+#define NUM_OF_EMBEDDEDSYSTEMS 1000
+
+int main() {
+
+	/*EmbeddedSystem embArray[NUM_OF_EMBEDDEDSYSTEMS];
+
+	for (int i = 0; i < NUM_OF_EMBEDDEDSYSTEMS; i++) {
+		embArray[i].memory = i * 1000;
+		embArray[i].print();
+	}*/
+
+	std::cout << "my kasddjflkasdjfflksdjflaskdajffirst program\n";
+
+	HtwList MYlist(6);
+	MYlist.add(2);
+	MYlist.add(3);
+	MYlist.add(6);
+	MYlist.add(7); 
+	MYlist.add(9);
+	MYlist.add(7);
+	MYlist.add(6);
+	MYlist.printelem();
+	
+
+	return -1;
+}
